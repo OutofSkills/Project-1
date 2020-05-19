@@ -1,6 +1,6 @@
 ﻿using Project_1;
 
-namespace BaseFeatures
+namespace DataValidation
 {
     interface IExistence
     {

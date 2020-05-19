@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Project_1;
+using DataValidation;
 
-namespace BaseFeatures
+namespace Menu
 {
     public class Menu : IMenu
     {
@@ -33,7 +34,7 @@ namespace BaseFeatures
 
         public void SelectMenuOption(int choice)
         {
-            Validation validation;
+            IValidation validation;
             ReservationsStatus status = new ReservationsStatus();
             status.updateReservationsStatuses();
 

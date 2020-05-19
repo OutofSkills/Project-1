@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BaseFeatures;
+using Project_1;
+using DateTools;
 
-namespace Project_1
+namespace DataValidation
 {
-    class Validation
+    class Validation : IValidation
     {
         public void validateNewRent()
         {
@@ -94,7 +95,7 @@ namespace Project_1
 
             string sRentID = Console.ReadLine();
             Int32.TryParse(sRentID, out rentID);
-            if(!rent.validateExistence(rentID))
+            if (!rent.validateExistence(rentID))
             {
                 Console.Clear();
                 Console.WriteLine("The following reservation ID doesn't exist!");

@@ -1,7 +1,7 @@
 ﻿using System;
-using Project_1;
 
-namespace BaseFeatures
+
+namespace Menu
 {
     public class WelcomeScreen : IWelcomeScreen
     {
@@ -22,7 +22,7 @@ namespace BaseFeatures
             {
                     Console.Clear();
 
-                    Menu menu = new Menu();
+                    IMenu menu = new Menu();
                     menu.DisplayMenu();
             }
         }
