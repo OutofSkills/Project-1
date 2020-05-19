@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using Project_1;
 
 namespace BaseFeatures
 {
@@ -6,7 +8,7 @@ namespace BaseFeatures
     {
         public void DisplayMenu()
         {
-            int menuChoice = 0;
+            int menuChoice;
 
             DisplayMenuText();
 
@@ -14,8 +16,6 @@ namespace BaseFeatures
             Int32.TryParse(sMenuChoice, out menuChoice);
 
             SelectMenuOption(menuChoice);
-
-
 
         }
 
@@ -33,9 +33,13 @@ namespace BaseFeatures
 
         public void SelectMenuOption(int choice)
         {
+            Validation validation;
+
             switch (choice)
             {
                 case 1:
+                    validation = new Validation();
+                    validation.validateNewRent();            
                     break;
                 case 2:
                     break;
@@ -44,11 +48,18 @@ namespace BaseFeatures
                 case 4:
                     break;
                 case 5:
+                    validation = new Validation();
+                    validation.validateNewCustomer();
                     break;
                 case 6:
                     break;
                 case 7:
+                    Console.Clear();
+
+                    Customer customerData = new Customer();
+                    customerData.displayCustomersList();
                     break;
+
                 case 8:
                     Environment.Exit(0);
                     break;

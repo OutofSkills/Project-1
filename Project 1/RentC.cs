@@ -1,5 +1,5 @@
-﻿using System;
-using BaseFeatures;
+﻿using BaseFeatures;
+using Project_1;
 
 namespace Test
 {
@@ -7,8 +7,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            WelcomeScreen sc = new WelcomeScreen();
-            sc.WriteWelcomeMessage();
+            Application rentApplication = new Application();
+            rentApplication.Run();
+            
         }
     }
 }
