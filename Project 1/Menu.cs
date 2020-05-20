@@ -35,6 +35,7 @@ namespace Menu
         public void SelectMenuOption(int choice)
         {
             IValidation validation;
+            CartRent rent;
             ReservationsStatus status = new ReservationsStatus();
             status.updateReservationsStatuses();
 
@@ -56,7 +57,7 @@ namespace Menu
                     break;
                 case 3:
                     Console.Clear();
-                    CartRent rent = new CartRent();
+                    rent = new CartRent();
                     rent.displayRentsList();
 
                     Console.ReadKey();
@@ -64,6 +65,15 @@ namespace Menu
                     DisplayMenu();
                     break;
                 case 4:
+                        rent = new CartRent();
+                    Car car = new Car();
+
+                    car.readCarData(rent);
+                    car.availableCarList(rent);
+
+                    Console.ReadKey();
+                    Console.Clear();
+                    DisplayMenu();
                     break;
                 case 5:
                     validation = new Validation();

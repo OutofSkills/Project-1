@@ -19,6 +19,26 @@ namespace Project_1
         public string pricePerDay { get; set; }
         public string location { get; set; }
 
+        public void readCarData(CartRent rent)
+        {
+            Console.Clear();
+
+            Console.WriteLine("Cart Plate:");
+            this.plate = Console.ReadLine();
+
+            Console.WriteLine("Car Model:");
+            this.model = Console.ReadLine();
+
+            Console.WriteLine("Start Date:");
+            rent.startDate = Console.ReadLine();
+
+            Console.WriteLine("End Date:");
+            rent.endDate = Console.ReadLine();
+
+            Console.WriteLine("City:");
+            this.location = Console.ReadLine();
+        }
+
         public void getCarData()
         {
             int carID = 0;
@@ -57,13 +77,14 @@ namespace Project_1
                
         }
 
-        public void availableCarList() ////Need Modifications
+        public void availableCarList(CartRent rent) ////Need Modifications
         {
             DataManager data = new DataManager();
             Tools tools = new Tools();
 
-            string query1 = "SELECT DISTINCT carID FROM Cars WHERE carID NOT IN";
-            string query2 = "(SELECT carID FROM Reservations WHERE(ReservStatsID = '1'))";
+            string query1 = "SELECT * FROM Cars WHERE Location = '" + location + "' and Plate = '" + plate +"' and Model = '"+ model +"' and carID NOT IN";
+            string query2 = "(SELECT carID FROM Reservations WHERE NOT((StartDate > '"+ tools.convertStringDate(rent.endDate).ToString("yyyy-MM-dd") + 
+                "') OR (EndDate < '"+ tools.convertStringDate(rent.startDate).ToString("yyyy-MM-dd") + "')))";
 
             using (data.databaseConnection = new SqlConnection())
             {
@@ -74,7 +95,7 @@ namespace Project_1
                     getAvailableCars.Connection = data.databaseConnection;
                     getAvailableCars.CommandText = query1+query2;
 
-                    Console.WriteLine(string.Format("{0}\t {1}\t {2}\t {3}\t {4}", "Cart Plate", "Car Model", "StartDate", "EndDate", "City"));
+                    Console.WriteLine(string.Format("{0}\t {1}\t {2}\t {3}\t {4}\t {5}", "Car ID", "Cart Plate", "Manufacturer", "Model", "PricePerDay", "City"));
                     try
                     {
                         data.databaseConnection.Open();
@@ -82,16 +103,14 @@ namespace Project_1
 
                         while (dataReader.Read())
                         {
-                            Console.WriteLine(string.Format("{0}\t |{1}\t\t |{2}\t |{3}\t |{4}",
-                       dataReader[0], dataReader[1], tools.convertStringDate(dataReader[2].ToString()).ToString("dd/MM/yyyy"),
-                       tools.convertStringDate(dataReader[3].ToString()).ToString("dd/MM/yyyy"), dataReader[4]));
+                            Console.WriteLine(string.Format("{0}\t |{1}\t\t |{2}\t |{3}\t |{4}\t |{5}",
+                       dataReader[0], dataReader[1], dataReader[2], dataReader[3], dataReader[4], dataReader[5]));
                         }
 
                     }
                     catch (SqlException e)
                     {
                         Console.WriteLine(e);
-
                     }
                 }
 
