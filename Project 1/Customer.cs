@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using Project_1;
+using DataValidation;
+using DataConnection;
+using DateTools;
 
-namespace BaseFeatures
+namespace Project_1
 {
     class Customer : IExistence
     {
@@ -64,7 +66,7 @@ namespace BaseFeatures
         }
         public void getCustomerData()
         {
-           
+
             DataManager data = new DataManager();
             string query = "Select Name, BirthDate, Location From Customers Where CustomerID = '" + this.customerID + "'";
 

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Project_1;
+using DataValidation;
 
-namespace BaseFeatures
+namespace Menu
 {
     public class Menu : IMenu
     {
@@ -33,7 +34,8 @@ namespace BaseFeatures
 
         public void SelectMenuOption(int choice)
         {
-            Validation validation;
+            IValidation validation;
+            CartRent rent;
             ReservationsStatus status = new ReservationsStatus();
             status.updateReservationsStatuses();
 
@@ -55,7 +57,7 @@ namespace BaseFeatures
                     break;
                 case 3:
                     Console.Clear();
-                    CartRent rent = new CartRent();
+                    rent = new CartRent();
                     rent.displayRentsList();
 
                     Console.ReadKey();
@@ -63,6 +65,15 @@ namespace BaseFeatures
                     DisplayMenu();
                     break;
                 case 4:
+                        rent = new CartRent();
+                    Car car = new Car();
+
+                    car.readCarData(rent);
+                    car.availableCarList(rent);
+
+                    Console.ReadKey();
+                    Console.Clear();
+                    DisplayMenu();
                     break;
                 case 5:
                     validation = new Validation();

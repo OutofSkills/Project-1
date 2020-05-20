@@ -1,4 +1,4 @@
-﻿namespace BaseFeatures
+﻿namespace Menu
 {
     public interface IMenu
     {

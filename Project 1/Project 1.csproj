@@ -67,6 +67,7 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="IMenu.cs" />
     <Compile Include="IExistence.cs" />
+    <Compile Include="IValidation.cs" />
     <Compile Include="IWelcomeScreen.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="RentC.cs" />

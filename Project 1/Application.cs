@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BaseFeatures;
+using Menu;
 
-namespace Project_1
+namespace RentApp
 {
     class Application
     {
         public void Run()
         {
-            WelcomeScreen sc = new WelcomeScreen();
+            IWelcomeScreen sc = new WelcomeScreen();
             sc.WriteWelcomeMessage();
 
 
